@@ -27,13 +27,13 @@ Prerequisites
 Configuration
 -----------
 
-You have to create a new instance of FlowRouterSEO for anything to work. You should declare the below
+You have to create a new instance of `FlowRouterSEO` for anything to work. You should declare the below
 in a file that is served to both the client and the server:
 
 `SEO = new FlowRouterSEO();`
 
 By default, the database functionality for static routes is disabled. If you wish to enable it you should
-pass in {database: true} to the constructor, i.e.
+pass in `{database: true}` to the constructor, i.e.
 
 `SEO = new FlowRouterSEO({database: true});`
 
@@ -55,11 +55,11 @@ Usage
 
 First, make sure you've set a `name` for your route within its Flow Router declaration i.e.
 
-		FlowRouter.route('/', {
-	  	name: 'home',
-	  	action: function() {
-	    	BlazeLayout.render('layout', {content: 'home'});
-	  	},
+    FlowRouter.route('/', {
+			name: 'home',
+			action: function() {
+				BlazeLayout.render('layout', {content: 'home'});
+			}
 		});
 
 You can set the title and meta tags within the `onCreated` function of a template e.g.
@@ -71,7 +71,7 @@ You can set the title and meta tags within the `onCreated` function of a templat
 				meta: {
 					'property="og:image"': 'http://locationofimage.com/image.png'
 				}
-			})
+			});
 		});
 
 If you have dynamic content that relies on a subscription you may want to follow a pattern
@@ -80,15 +80,15 @@ similar to this:
 		Template.templateName.onCreated(function() {
 			var postId = FlowRouter.getParam('postId');
 			this.subscribe('postById', postId, {onReady: function() {
-		    var post = Posts.findOne(instance.dealId);
-		    SEO.set({
-		    	title: post.title,
-		    	description: post.description,
-		    	meta: {
-		    		'property="og:image"': post.image,
-		    		'name="twitter:image"': post.image
-		    	}
-		    });
+				var post = Posts.findOne(instance.dealId);
+				SEO.set({
+					title: post.title,
+					description: post.description,
+					meta: {
+						'property="og:image"': post.image,
+						'name="twitter:image"': post.image
+					}
+				});
 			}});
 		});
 

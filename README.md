@@ -40,14 +40,14 @@ pass in `{database: true}` to the constructor, i.e.
 If you wish to set default title and meta tags for all your pages you can like so:
 
     SEO.setDefaults({
-    	title: 'Default title',
-    	description: 'Default description',
-    	meta: {
-    		'property="og:type"': 'website',
-    		'property="og:site_name"': 'Default site name',
-    		'name="twitter:card"': 'summary',
-    		'name="twitter:site"': '@TwitterUsername'
-    	}
+      title: 'Default title',
+      description: 'Default description',
+      meta: {
+        'property="og:type"': 'website',
+        'property="og:site_name"': 'Default site name',
+        'name="twitter:card"': 'summary',
+        'name="twitter:site"': '@TwitterUsername'
+      }
     });
 
 Usage
@@ -56,41 +56,41 @@ Usage
 First, make sure you've set a `name` for your route within its Flow Router declaration i.e.
 
     FlowRouter.route('/', {
-			name: 'home',
-			action: function() {
-				BlazeLayout.render('layout', {content: 'home'});
-			}
-		});
+      name: 'home',
+      action: function() {
+        BlazeLayout.render('layout', {content: 'home'});
+      }
+    });
 
 You can set the title and meta tags within the `onCreated` function of a template e.g.
 
-		Template.templateName.onCreated(function() {
-			SEO.set({
-				title: 'Title for this template',
-				description: 'Description for this template',
-				meta: {
-					'property="og:image"': 'http://locationofimage.com/image.png'
-				}
-			});
-		});
+    Template.templateName.onCreated(function() {
+      SEO.set({
+        title: 'Title for this template',
+        description: 'Description for this template',
+        meta: {
+          'property="og:image"': 'http://locationofimage.com/image.png'
+        }
+      });
+    });
 
 If you have dynamic content that relies on a subscription you may want to follow a pattern
 similar to this:
 
-		Template.templateName.onCreated(function() {
-			var postId = FlowRouter.getParam('postId');
-			this.subscribe('postById', postId, {onReady: function() {
-				var post = Posts.findOne(instance.dealId);
-				SEO.set({
-					title: post.title,
-					description: post.description,
-					meta: {
-						'property="og:image"': post.image,
-						'name="twitter:image"': post.image
-					}
-				});
-			}});
-		});
+    Template.templateName.onCreated(function() {
+      var postId = FlowRouter.getParam('postId');
+      this.subscribe('postById', postId, {onReady: function() {
+        var post = Posts.findOne(instance.dealId);
+        SEO.set({
+          title: post.title,
+          description: post.description,
+          meta: {
+            'property="og:image"': post.image,
+            'name="twitter:image"': post.image
+          }
+        });
+      }});
+    });
 
 Automated tags
 --------------
@@ -113,13 +113,13 @@ This creates a Mongo Collection that stores title and meta tag information again
 
 You can add information for a route name as follows:
 
-	SEO.routes.upsert({routeName: 'home'}, {$set: {
-		title: 'Home page',
-		description: 'A lovely place to be',
-		meta: {
-			'property="og:image"': 'http://locationofimage.com/image.png'
-		}
-	}})
+    SEO.routes.upsert({routeName: 'home'}, {$set: {
+      title: 'Home page',
+      description: 'A lovely place to be',
+      meta: {
+        'property="og:image"': 'http://locationofimage.com/image.png'
+      }
+    }})
 
 Behind the scenes, when the `home` route is loaded we subscribe to the route by its name. Once we receive
 the result we update the title and meta tags accordingly.

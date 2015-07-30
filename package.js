@@ -10,7 +10,7 @@ Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
 
   api.use(['mongo', 'underscore']);
-  api.use('kadira:flow-router');
+  api.use('kadira:flow-router@2.0.0');
 
   api.addFiles('flow-router-seo.js');
 

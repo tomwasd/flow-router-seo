@@ -2,7 +2,7 @@ Package.describe({
   name: 'tomwasd:flow-router-seo',
   version: '0.0.1',
   summary: 'A simple way to set the title and meta tags for sites using flow router',
-  git: '',
+  git: 'https://github.com/tomwasd/flow-router-seo',
   documentation: 'README.md'
 });
 

@@ -37,6 +37,14 @@ pass in `{database: true}` to the constructor, i.e.
 
 `SEO = new FlowRouterSEO({database: true});`
 
+The default collection/table name is 'flow-router-seo-routes'. You can change this by passing in the
+databaseName variable into the constructor, i.e.
+
+    SEO = new FlowRouterSEO({
+      database: true,
+      databaseName: 'myDatabaseName'
+    });
+
 If you wish to set default title and meta tags for all your pages you can like so:
 
     SEO.setDefaults({

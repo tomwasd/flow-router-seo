@@ -4,7 +4,11 @@ FlowRouterSEO = function(config) {
 
   if (config) {
     if (config.database) {
-      self.routes = new Mongo.Collection('flow-router-seo-routes');
+
+      // Allow for custom collection name;
+      if (config.databaseName) self.routes = new Mongo.Collection(config.databaseName);
+      else self.routes = new Mongo.Collection('flow-router-seo-routes');
+
       if (Meteor.isServer) {
         // Create an index to make lookups faster
         // Only available server side
